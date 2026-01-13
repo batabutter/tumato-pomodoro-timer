@@ -95,17 +95,17 @@ button.timer_button {
     background-color: rgb(29, 29, 29);
 }
 
-.preset_list::-webkit-scrollbar {
+.preset_container::-webkit-scrollbar {
     background: transparent;
     height: 1em;
 }
 
-.preset_list::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+.preset_container::-webkit-scrollbar-thumb {
+    background: rgb(141, 141, 141);
     border-radius: 2em;
 }
 
 
-.preset_list::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
+.preset_container::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);
 }
