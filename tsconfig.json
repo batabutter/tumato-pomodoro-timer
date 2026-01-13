@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es2022",
+        "module": "commonjs",
+        "rootDir": "src",
+        "outDir": "build",
+        "strict": true,
+
+        "lib": ["dom", "esnext"],
+        "types": ["node", "electron"],
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "skipLibCheck": false,
+
+        "esModuleInterop": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

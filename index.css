@@ -1,0 +1,84 @@
+* {
+    background-color: rgb(73, 73, 73);
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+body{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    gap: 2em;
+}
+
+.timer_name {
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.timer_container {
+    width: 50em;
+
+}
+
+.canvas_timer_container{
+    max-width: 500px;
+    height: 500px;
+}
+
+.button_layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+button.timer_button {
+    width: 5em;
+    height: 2em;
+    color: rgb(127, 195, 255);
+    border-radius: 2em;
+    border: 2px solid rgb(127, 195, 255);
+    box-shadow: 2px 2px rgb(201, 247, 253);
+}
+
+.timer_preset_title {
+    color: white;
+    padding: 0.5em;
+    font-size: larger;
+    font-weight: bold   ;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+.preset_list {
+    width: 60%;
+    background-color: rgb(46, 46, 46);
+    border-radius: 2em;
+    box-shadow: 2px 5px rgb(29, 29, 29);
+}
+
+.preset_list * {
+    background: transparent;
+}
+
+.preset_list ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 0.5em;
+    width: 75%;
+}
+
+.preset_list ul li{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    gap: 0.5em;
+    border-radius: 2em;
+    padding: 0.5em;
+    font-weight: bold;
+}
+
+.preset_list ul li:hover {
+    background-color: rgb(29, 29, 29);
+}

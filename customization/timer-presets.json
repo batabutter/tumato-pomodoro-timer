@@ -1,0 +1,16 @@
+{
+    "presets": [
+        {
+            "name": "10 Minute Timer",
+            "duration": "600000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "duration": "600000"
+        },
+        {
+            "name": "30 Minute Timer",
+            "duration": "600000"
+        }
+    ]
+}
