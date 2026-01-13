@@ -1,4 +1,4 @@
-const preset_list = document.getElementById("timer_presets") as HTMLDivElement
+const preset_list = document.getElementById("timer_preset_list") as HTMLDivElement
 
 const renderPresetList = async () => {
     
@@ -8,9 +8,9 @@ const renderPresetList = async () => {
 
         console.log(`Made it here before > ${preset_list}`);
         preset_list.innerHTML += 
-        `<ul> ${json.presets.map(
-                    (timer:TimerData) => (`<li><p>${timer.name}</p><p>${timer.duration}</p></li>`)).join('')}
-        </ul>`;
+            `<ul> ${json.presets.map(
+                        (timer:TimerData) => (`<li><p>${timer.name}</p><p>${timer.duration}</p></li>`)).join('')}
+            </ul>`;
             
         console.log("Made it here");
 

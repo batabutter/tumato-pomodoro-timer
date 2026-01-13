@@ -3,11 +3,12 @@
     font-family:Georgia, 'Times New Roman', Times, serif
 }
 
-body{
+.content_wrapper {
     display: flex;
     justify-content: space-between;
     color: white;
     gap: 2em;
+    max-height: 35em;
 }
 
 .timer_name {
@@ -42,23 +43,33 @@ button.timer_button {
     box-shadow: 2px 2px rgb(201, 247, 253);
 }
 
-.timer_preset_title {
-    color: white;
-    padding: 0.5em;
-    font-size: larger;
-    font-weight: bold   ;
-    font-family:Georgia, 'Times New Roman', Times, serif
-}
-
-.preset_list {
+.preset_container {
     width: 60%;
     background-color: rgb(46, 46, 46);
     border-radius: 2em;
     box-shadow: 2px 5px rgb(29, 29, 29);
+    min-height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
-.preset_list * {
-    background: transparent;
+.preset_container .timer_preset_title {
+    display: flex;
+    color: white;
+    padding: 0.5em;
+    font-size: larger;
+    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    border-radius: 2em;
+    width: 5em;
+    height: 2em;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(88, 88, 88);
+}
+
+.preset_container * {
+    background-color: transparent;
 }
 
 .preset_list ul {
@@ -77,8 +88,24 @@ button.timer_button {
     border-radius: 2em;
     padding: 0.5em;
     font-weight: bold;
+    background-color: rgb(88, 88, 88);
 }
 
 .preset_list ul li:hover {
     background-color: rgb(29, 29, 29);
+}
+
+.preset_list::-webkit-scrollbar {
+    background: transparent;
+    height: 1em;
+}
+
+.preset_list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2em;
+}
+
+
+.preset_list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
 }
