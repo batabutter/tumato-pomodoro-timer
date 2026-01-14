@@ -75,7 +75,7 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 600px;
     height: 100%;
@@ -83,7 +83,7 @@
     overflow-y: hidden;
     background-color: var(--timer-container-bg-color);
     border-radius: 1em;
-    padding: 0.5em;
+    padding: 1em;
     border-style: solid;
     border-image: 
         linear-gradient(
@@ -107,6 +107,8 @@
     justify-content: space-between;
     width: 90%;
     background-color: transparent;
+    padding-top: 0.5em;
+    border-top: 2px solid var(--timer-name-border-bottom);
 }
 
 button.timer_button {
@@ -116,6 +118,18 @@ button.timer_button {
     border-radius: 2em;
     border: 2px solid var(--button-border);
     box-shadow: 2px 2px var(--button-box-shadow);
+}
+
+button.timer_button:hover {
+    background-color: rgb(88, 88, 88);
+}
+
+button.timer_button:active {
+    box-shadow: inset 2px 2px var(--button-box-shadow);
+}
+
+button.timer_button *{
+    background: transparent;
 }
 
 .preset_container {
