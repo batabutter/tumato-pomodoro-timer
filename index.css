@@ -8,7 +8,7 @@
     --timer-name-color: white;
     --timer-name-border-bottom: rgb(88, 88, 88);
 
-    --timer-auto-button-gradient-top:rgb(127, 255, 144);
+    --top-button-border:rgb(233, 184, 255);
     --timer-auto-button-gradient-bottom:rgb(219, 142, 255);
     
     --timer-container-gradient-top: rgb(219, 142, 255);
@@ -17,6 +17,8 @@
     --button-border: rgb(127, 195, 255);
     --button-icon: rgb(127, 195, 255);
     --button-box-shadow:rgb(201, 247, 253);
+
+    --header-button-border: rgb(219, 142, 255);
 
     --break-button-border: rgb(255, 127, 127);
     --break-button-icon: rgb(255, 127, 127);
@@ -59,17 +61,26 @@
 }
 
 .timer_name button {
-    border-style: solid;
     width: 7em;
     height: 2em;
     color: white;
-    border-image: 
-    linear-gradient(
-            to bottom, 
-            var(--timer-auto-button-gradient-top) 0%, 
-            var(--timer-auto-button-gradient-bottom) 100%) 
-            1;
+    border-radius: 2em;
+    border: 2px solid var(--top-button-border);
+    box-shadow: 2px 2px var(--button-box-shadow);
 }
+
+.timer_name button:hover {
+    background-color: rgb(88, 88, 88);
+}
+
+.timer_name button:active {
+    box-shadow: inset 2px 2px var(--button-box-shadow);
+}
+
+#auto_button.inset {
+    box-shadow: inset 2px 2px var(--button-box-shadow);
+}
+
 
 .timer_container {
     display: flex;

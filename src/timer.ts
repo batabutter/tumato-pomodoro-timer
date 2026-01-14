@@ -3,6 +3,8 @@ const start_button = document.getElementById("start_button") as HTMLButtonElemen
 const start_icon = document.getElementById("start_icon") as HTMLButtonElement;
 const switch_button = document.getElementById("switch_button") as HTMLButtonElement;
 const reset_button = document.getElementById("reset_button") as HTMLButtonElement;
+const auto_button = document.getElementById("auto_button") as HTMLButtonElement;
+const reset_all_button = document.getElementById("reset_all_button") as HTMLButtonElement;
 
 const ctx = canvas ? canvas.getContext("2d") : null;
 const parentElement = canvas.parentElement;
@@ -21,6 +23,7 @@ const color_scheme_break = "rgb(255, 99, 99)";
 const color_scheme_canvas = parentElement ? getComputedStyle(parentElement).backgroundColor : "white";
 
 let requestId: number = -1;
+let auto = false;
 
 enum TimerType {
     Work,
@@ -208,7 +211,10 @@ const start_timer = () => {
         draw_background();
 
         if (fraction >= 1) {
-            window.cancelAnimationFrame(requestId)
+            if (auto) {
+                auto_switch_timer();
+            } else 
+                window.cancelAnimationFrame(requestId)
             return;
         }
 
@@ -287,8 +293,40 @@ const switch_timer = () => {
     draw_background();
 }
 
+const auto_switch_timer = () => {
+    reset_timer();
+
+    switch_timer();
+
+    if ((BreakTimer.GetElaspedTime() / BreakTimer.GetTotalTime()) >= 1)
+        reset_timer();
+
+    start_timer();
+}
+
+const set_auto_condition = () => {
+
+    auto = !auto;
+    auto_button.classList.toggle('inset');
+}
+
+const reset_all = () => {
+    reset_timer();
+    const tempTimer = FocusedTimer;
+    if (FocusedTimer == WorkTimer)
+        FocusedTimer = BreakTimer;
+    else
+        FocusedTimer = WorkTimer;
+    reset_timer();
+    FocusedTimer = tempTimer;
+
+    draw_background();
+}
+
 start_button.addEventListener("click", start_timer);
 switch_button.addEventListener("click", switch_timer);
 reset_button.addEventListener("click", reset_timer);
+auto_button.addEventListener("click", set_auto_condition);
+reset_all_button.addEventListener("click", reset_all);
 
 draw_background();
