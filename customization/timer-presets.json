@@ -3,14 +3,52 @@
         {
             "name": "10 Minute Timer",
             "workDuration": "600000",
-            "breakDuration": "30000",
-            "id": 0
+            "breakDuration": "30000"
         },
         {
             "name": "20 Minute Timer",
-            "workDuration": "600000",
-            "breakDuration": "30000",
-            "id": 0
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
+        },
+        {
+            "name": "20 Minute Timer",
+            "workDuration": "1200000",
+            "breakDuration": "300000"
         }
     ]
 }

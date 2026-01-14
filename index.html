@@ -12,7 +12,7 @@
         <div class="content_wrapper">
             <div class="timer_container">
                 <div class="timer_name">
-                    <p id="timer-name"></p>
+                    <p id="name"></p>
                     <button id="auto_button">Auto</button>
                     <button id="reset_all_button">Reset All</button>
                 </div>
@@ -39,12 +39,13 @@
                 <div class="preset_inner">
                     <div class="timer_preset_title"><p>Presets:</p></div>
                     <div class="preset_list" id="timer_preset_list"></div>
+                    <div class="preset_options"><i class="fa-solid fa-plus"></i></div>
                 </div>
             </div>
         </div>
     </body>
 
-    <script src="build/renderer.js"></script>
-    <script src="build/timer.js"></script>
-    <script src="build/presets.js"></script>
+    <script type="module" src="build/renderer.js"></script>
+    <script type="module" src="build/timer.js"></script>
+    <script type="module" src="build/presets.js"></script>
 </html>

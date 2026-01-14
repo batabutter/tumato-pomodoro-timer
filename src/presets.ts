@@ -1,4 +1,4 @@
-import updateTimer from "./timer";
+import { updateTimer, formatTime }from "./timer.js";
 
 const preset_list = document.getElementById("timer_preset_list") as HTMLDivElement;
 const li = document.getElementsByTagName("li");
@@ -15,10 +15,12 @@ const renderPresetList = async () => {
         preset_list.innerHTML +=
             `<ul> ${json.presets.map(
                 (timer: TimerData) =>
-                    (`<li><p>${timer.name}</p><p>Work: ${timer.workDuration}</p><p>Break: ${timer.breakDuration}</p></li>`)).join('')}
+                    (`<li>
+                        <p>${timer.name}</p>
+                        <p>Work: ${formatTime(timer.workDuration)}</p>
+                        <p>Break: ${formatTime(timer.breakDuration)}</p>
+                        </li>`)).join('')}
             </ul>`;
-
-        console.log("Made it here");
 
         listElements = Array.from(preset_list.querySelectorAll("li"));
 
@@ -36,6 +38,8 @@ const loadPreset = async (index: number) => {
     try {
         const res = await fetch("../customization/timer-presets.json");
         const json = await res.json();
+
+        console.log(json.presets)
 
         let preset = json.presets[index];
 
@@ -60,6 +64,7 @@ preset_list.addEventListener("click",
                 currentTarget = target;
                 selected = index;
                 console.log(`Selected: ${index}`);
+                loadPreset(selected);
                 
                 currentTarget.classList.add("list_selection_border")
             }

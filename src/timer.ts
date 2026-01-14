@@ -5,7 +5,7 @@ const switch_button = document.getElementById("switch_button") as HTMLButtonElem
 const reset_button = document.getElementById("reset_button") as HTMLButtonElement;
 const auto_button = document.getElementById("auto_button") as HTMLButtonElement;
 const reset_all_button = document.getElementById("reset_all_button") as HTMLButtonElement;
-const timer_name = document.getElementById("timer_name") as HTMLParagraphElement;
+const timer_name = document.getElementById("name") as HTMLParagraphElement;
 
 const ctx = canvas ? canvas.getContext("2d") : null;
 const parentElement = canvas.parentElement;
@@ -74,25 +74,13 @@ class Timer {
 
 }
 
-let totalWorkTime = 10000;
-let totalBreakTime = 10000;
-const WorkTimer = new Timer(TimerType.Work, totalWorkTime);
-const BreakTimer = new Timer(TimerType.Break, totalBreakTime);
+let totalWorkTime = 60000;
+let totalBreakTime = 60000;
+let WorkTimer = new Timer(TimerType.Work, totalWorkTime);
+let BreakTimer = new Timer(TimerType.Break, totalBreakTime);
 
 let FocusedTimer: Timer | null;
 FocusedTimer = WorkTimer;
-
-const formatTime = (remainingTime: number): string => {
-
-    if (remainingTime < 0) remainingTime = 0;
-
-    const numSeconds = `${Math.floor((remainingTime / 1000) % 60)}`.padStart(2, '0');
-    const numMinutes = `${Math.floor((remainingTime / 60000) % 60)}`.padStart(2, '0');
-    const numHours = `${Math.floor((remainingTime / 600000) % 99)}`.padStart(2, '0');
-
-    return `${numHours}:${numMinutes}:${numSeconds}`
-
-}
 
 const draw_background = () => {
     const time = new Date();
@@ -157,6 +145,9 @@ const draw_background = () => {
         start_icon.classList.add("fa-play");
     }
 
+    if (timer_name.innerText.length === 0)
+        timer_name.innerText = "10 Minute Timer"
+
     ctx.save();
 }
 
@@ -175,6 +166,7 @@ const drawTimer = (fraction: number, x: number, y: number, radius: number, color
 }
 
 const start_timer = () => {
+
     if (!ctx || !FocusedTimer) return;
 
     if (FocusedTimer.GetIsRunning()) {
@@ -324,11 +316,29 @@ const reset_all = () => {
     draw_background();
 }
 
-const updateTimer = (name: string, workTime: number, breakTime: number) => {
+export const updateTimer = (name: string, workTime: number, breakTime: number) => {
     timer_name.innerText = name;
+    totalWorkTime = workTime;
+    totalBreakTime = breakTime;
+
+    WorkTimer = new Timer(TimerType.Work, totalWorkTime);
+    BreakTimer = new Timer(TimerType.Break, totalBreakTime);
+
+    FocusedTimer = WorkTimer;
+
+    draw_background();
 }
 
-export default updateTimer;
+export const formatTime = (remainingTime: number): string => {
+
+    if (remainingTime < 0) remainingTime = 0;
+
+    const numSeconds = `${Math.floor((remainingTime / 1000) % 60)}`.padStart(2, '0');
+    const numMinutes = `${Math.floor((remainingTime / 60000) % 60)}`.padStart(2, '0');
+    const numHours = `${Math.floor((remainingTime / 3600000) % 100)}`.padStart(2, '0');
+
+    return `${numHours}:${numMinutes}:${numSeconds}`
+}
 
 start_button.addEventListener("click", start_timer);
 switch_button.addEventListener("click", switch_timer);
