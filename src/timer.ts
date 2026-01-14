@@ -326,6 +326,8 @@ export const updateTimer = (name: string, workTime: number, breakTime: number) =
 
     FocusedTimer = WorkTimer;
 
+    reset_all();
+
     draw_background();
 }
 

@@ -9,6 +9,32 @@
     </head>
 
     <body>
+        <div class="create_timer_container">
+            <div class="create_timer_container_inner">
+                <div class="create_timer_container_title"><p>Add new
+                        Timer</p></div>
+                <div class="interactive_create_timer">
+                    <div class="timer_segment"><p>00</p></div>:
+                    <div class="timer_segment"><p>00</p></div>:
+                    <div class="timer_segment"><p>00</p></div>
+                </div>
+                <div class="create_timer_name">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                    <input placeholder="Timer" />
+                </div>
+                <div class="create_timer_button_layout">
+                    <button id="save_button" class="save_button">
+                        <i class="fa-regular fa-floppy-disk"></i>
+                        Save
+                    </button>
+                    <button id="cancel_button" class="cancel_button">
+                        <i class="fa-solid fa-x"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="content_wrapper">
             <div class="timer_container">
                 <div class="timer_name">
@@ -16,7 +42,6 @@
                     <button id="auto_button">Auto</button>
                     <button id="reset_all_button">Reset All</button>
                 </div>
-                
 
                 <div class="canvas_timer_container">
                     <canvas id="timer" width="500" height="500"></canvas>
@@ -24,11 +49,12 @@
 
                 <div class="button_layout">
                     <button id="start_button" class="timer_button">
-                        <i id="start_icon" class="fa-solid fa-play"></i></button>
+                        <i id="start_icon"
+                            class="fa-solid fa-play"></i></button>
 
                     <button id="switch_button" class="timer_button">
                         <i class="fa-solid fa-shuffle"></i></button>
-                        
+
                     <button id="reset_button" class="timer_button"><i
                             class="fa-solid fa-arrow-rotate-left"></i></button>
                 </div>
@@ -40,7 +66,7 @@
                     <div class="timer_preset_title"><p>Presets:</p></div>
                     <div class="preset_list" id="timer_preset_list"></div>
                     <div class="preset_options">
-                        <button>
+                        <button id="plus_button">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>

@@ -1,6 +1,7 @@
 * {
     background-color: rgb(75, 75, 75);
-    font-family: Georgia, 'Times New Roman', Times, serif
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
 }
 
 :root{
@@ -34,6 +35,12 @@
 
     --preset-buttons-color: white;
 
+    --save-button-bg: rgb(169, 255, 135);
+    --save-button-bg-hover: rgb(127, 192, 102);
+    --save-button-bg-active: rgb(208, 255, 190);
+    --cancel-button-bg: rgb(255, 121, 121);
+    --cancel-button-bg-hover: rgb(214, 102, 102);
+    --cancel-button-bg-active: rgb(255, 172, 172);
 }
 
 .content_wrapper {
@@ -151,8 +158,12 @@ button.timer_button *{
     width: 60%;
     border-radius: 2em;
     height: 100%;
+    background-image: 
+        linear-gradient(to bottom, 
+        var(--preset-container-bg), 
+        rgb(36, 36, 36));
     background-color: var(--preset-container-bg);
-    box-shadow: 5px 5px 5px var(--container-bg-color);
+    box-shadow: 5px 5px 5px rgb(27, 27, 27);
     padding: 0.5em;
 }
 
@@ -259,4 +270,138 @@ button.timer_button *{
 
 .preset_options i {
     font-size:x-large;
+}
+
+.create_timer_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    justify-content: center;
+    width: 50%;
+    height: 50vh;
+
+    background-color: rgb(36, 36, 36);
+    border-radius: 2em;
+    box-shadow: 5px 5px 5px rgb(27, 27, 27);
+    position: absolute;
+
+    color: white;
+}
+
+.create_timer_container_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+
+    color: white;
+}
+
+.create_timer_container * {
+    background: transparent;
+    margin: 0;
+    
+}
+
+.create_timer_container_title {
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    width: 100%;
+    border-bottom: 2px solid var(--timer-name-border-bottom);
+    padding: 0.5em;
+}
+
+.create_timer_name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid var(--timer-name-border-bottom);
+    padding: 0.5em;
+    width: 100%;
+}
+
+.create_timer_name input{
+    color: white;
+    padding: 1em;
+    border-radius: 2em;
+    background-color: var(--timer-container-bg-color);
+}
+
+.interactive_create_timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--timer-container-bg-color);
+    border-radius: 2em;
+    width: 100%;
+    height: 25%;
+    font-size: 6em;
+    border-top: 2px solid var(--timer-container-gradient-top);
+    border-bottom: 2px solid var(--timer-container-gradient-bottom);
+    box-shadow: 5px 5px 5px rgb(27, 27, 27);
+}
+
+.timer_segment {
+    border-radius: 0.25em;
+}
+
+.timer_segment:hover {
+    background-color: rgb(88, 88, 88);
+}
+
+.create_timer_button_layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
+}
+
+.save_button {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--save-button-bg);
+    border-radius: 1em;
+    border: none;
+    padding: 1em;
+    width: 30%;
+    font-size: 1em;
+    box-shadow: 5px 5px 5px rgb(27, 27, 27);
+}
+
+.save_button:hover {
+    background-color: var(--save-button-bg-hover);
+}
+
+.save_button:active {
+    background-color: var(--save-button-bg-active);
+}
+
+.cancel_button {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cancel-button-bg);
+    border: none;
+    border-radius: 1em;
+    padding: 1em;
+    width: 30%;
+    font-size: 1em;
+    box-shadow: 5px 5px 5px rgb(27, 27, 27);
+}
+
+.cancel_button:hover {
+    background-color: var(--cancel-button-bg-hover);
+}
+
+.cancel_button:active {
+    background-color: var(--cancel-button-bg-active);
 }
