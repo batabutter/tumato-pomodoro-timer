@@ -6,47 +6,91 @@ const reset_button = document.getElementById("reset_button") as HTMLButtonElemen
 const ctx = canvas ? canvas.getContext("2d") : null;
 const parentElement = canvas.parentElement;
 
-const lineWidth = 20;
-const outerRadius = Math.min((canvas.width) / 2, (canvas.height) / 2);
-const color_scheme_bg ="rgb(255, 255, 255)";
-const color_scheme_font = "rgb(32, 206, 250)";
+const ratio = 0.75
+const workTimerSize = ratio * canvas.width
+const breakTimerSize = (1 - ratio) * canvas.width
+
+const lineWidth = 15;
+const workTimerOuterRadius = Math.min((workTimerSize) / 2, (workTimerSize) / 2);
+const breakTimerOuterRadius = (breakTimerSize) / 2;
+const color_scheme_bg = "rgb(80, 80, 80)";
+const color_scheme_font = "rgb(0, 255, 213)";
 const color_scheme_canvas = parentElement ? getComputedStyle(parentElement).backgroundColor : "white";
 
 let requestId: number = -1;
-let totalTime = 10000;
+let totalWorkTime = 10000;
+let totalBreakTime = 10000;
 
-let pausedTime:number = 0;
+let pausedTime: number = 0;
 let pausedStart: number | null = null;
 let startTime: number | null = null;
 
-let elasped_time = 0;
+let elaspedWorkTime = 0;
+let elaspedBreakTime = 0;
 
-const formatTime = (time: number) => {
+const formatTime = (remainingTime: number): string => {
+
+    if (remainingTime < 0) remainingTime = 0;
+
+    const numSeconds = `${Math.floor((remainingTime / 1000) % 60)}`.padStart(2, '0');
+    const numMinutes = `${Math.floor((remainingTime / 60000) % 60)}`.padStart(2, '0');
+    const numHours = `${Math.floor((remainingTime / 600000) % 99)}`.padStart(2, '0');
+
+    return `${numHours}:${numMinutes}:${numSeconds}`
 
 }
-
-// 60000
 
 const draw_background = () => {
     const time = new Date();
 
     if (!ctx) return;
 
+    ctx.fillStyle = color_scheme_canvas;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.lineWidth = lineWidth;
+
+    // Draw the break timer
+    ctx.beginPath();
+    ctx.strokeStyle = color_scheme_bg;
+    ctx.arc(
+        breakTimerOuterRadius + (canvas.width - breakTimerSize),
+        breakTimerOuterRadius,
+        breakTimerOuterRadius - lineWidth / 2, 0, 2 * Math.PI);
+    ctx.stroke();
+
+    // Draw the work timer
+
     ctx.lineWidth = lineWidth;
 
     ctx.beginPath();
-
-    // Draw the background
     ctx.strokeStyle = color_scheme_bg;
     ctx.arc(
-        outerRadius,
-        outerRadius,
-        outerRadius - lineWidth, 0, 2 * Math.PI);
+        workTimerOuterRadius,
+        workTimerOuterRadius + (canvas.width - workTimerSize),
+        workTimerOuterRadius - lineWidth / 2, 0, 2 * Math.PI);
     ctx.stroke();
 
     draw_time();
 
     ctx.save();
+}
+
+const drawWorkTimer = (fraction: number) => {
+    if (!ctx) return
+
+    ctx.beginPath();
+
+    ctx.strokeStyle = color_scheme_font;
+    ctx.arc(
+        workTimerOuterRadius,
+        workTimerOuterRadius + (canvas.width - workTimerSize),
+        workTimerOuterRadius - lineWidth / 2, -(Math.PI / 2), ((2 * Math.PI) * fraction) - (Math.PI / 2));
+    ctx.stroke();
+}
+
+const drawBreakTimer = () => {
+
 }
 
 
@@ -63,31 +107,21 @@ const start_timer = () => {
 
     const run_timer = () => {
         const now_time = Date.now();
-        if (!startTime || (elasped_time) >= totalTime) return;
+        if (!startTime || (elaspedWorkTime) >= totalWorkTime) return;
 
         const delta_time = (now_time - startTime - pausedTime);
-        const fraction = (delta_time) / totalTime;
+        const fraction = (delta_time) / totalWorkTime;
 
-        ctx.fillStyle = color_scheme_canvas;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        elaspedWorkTime = now_time - startTime;
         draw_background();
 
-        ctx.beginPath();
+        drawWorkTimer(fraction);
+        drawBreakTimer();
 
-        ctx.strokeStyle = color_scheme_font;
-        ctx.arc(
-            outerRadius,
-            outerRadius,
-            outerRadius - lineWidth, -(Math.PI / 2), ((2 * Math.PI) * fraction) - (Math.PI / 2));
-        ctx.stroke();
-
-        elasped_time = now_time - startTime;
-        
-        if ((elasped_time) <= totalTime)
-            draw_time();
+        elaspedWorkTime = now_time - startTime;
 
         if (fraction >= 1) {
-            window.requestAnimationFrame(run_timer);
+            window.cancelAnimationFrame(requestId)
             return;
         }
 
@@ -110,7 +144,7 @@ const reset_timer = () => {
     startTime = null;
     pausedTime = 0;
     pausedStart = null;
-    elasped_time = 0;
+    elaspedWorkTime = 0;
 
     ctx.fillStyle = color_scheme_canvas;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -120,6 +154,7 @@ const reset_timer = () => {
     requestId = -1;
 }
 
+/* The fonts here are hard-coded, kinda lame */
 const draw_time = () => {
     if (!ctx) return;
 
@@ -129,13 +164,20 @@ const draw_time = () => {
 
     ctx.fillStyle = color_scheme_bg;
 
-    const remainingTime = totalTime - elasped_time;
+    const remainingWorkTime = totalWorkTime - elaspedWorkTime;
 
-    const numSeconds = Math.floor((remainingTime / 1000) % 60);
-    const numMinutes = Math.floor((remainingTime / 60000) % 60);
-    const numHours =  Math.floor((remainingTime / 600000) % 99);
+    const formattedTime = formatTime(remainingWorkTime);
 
-    ctx.fillText(`${numHours}:${numMinutes}:${numSeconds}`, canvas.width/2, canvas.height/2);
+    ctx.fillText(
+        formattedTime,
+        workTimerSize / 2,
+        workTimerOuterRadius + (canvas.width - workTimerSize));
+
+    ctx.font = "bold 1.25em serif";
+    ctx.fillText(
+        formattedTime,
+        breakTimerOuterRadius + (canvas.width - breakTimerSize),
+        breakTimerOuterRadius);
 }
 
 

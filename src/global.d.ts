@@ -14,7 +14,8 @@ declare global {
 
     interface TimerData {
         name: string,
-        duration: number
+        workDuration: number,
+        breakDuration: number
     }
 
 }

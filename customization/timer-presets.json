@@ -2,43 +2,58 @@
     "presets": [
         {
             "name": "10 Minute Timer",
-            "duration": "600000"
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "20 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         },
         {
-            "name": "30 Minute Timer",
-            "duration": "600000"
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
+        },
+        {
+            "name": "10 Minute Timer",
+            "workDuration": "600000",
+            "breakDuration": "30000"
         }
     ]
 }
