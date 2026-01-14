@@ -1,3 +1,5 @@
+import updateTimer from "./timer";
+
 const preset_list = document.getElementById("timer_preset_list") as HTMLDivElement;
 const li = document.getElementsByTagName("li");
 let listElements:HTMLElement[] = [];
@@ -30,6 +32,19 @@ const savePreset = () => {
 
 }
 
+const loadPreset = async (index: number) => {
+    try {
+        const res = await fetch("../customization/timer-presets.json");
+        const json = await res.json();
+
+        let preset = json.presets[index];
+
+        updateTimer(preset.name, preset.workDuration, preset.breakDuration);
+    } catch (error) {
+        console.log(`Couldn't load timer preset data :${error}`);
+    }
+}
+
 preset_list.addEventListener("click",
     function (e: PointerEvent) {
         const target = (e.target as HTMLElement).closest('li');
@@ -45,6 +60,7 @@ preset_list.addEventListener("click",
                 currentTarget = target;
                 selected = index;
                 console.log(`Selected: ${index}`);
+                
                 currentTarget.classList.add("list_selection_border")
             }
         }

@@ -5,6 +5,7 @@ const switch_button = document.getElementById("switch_button") as HTMLButtonElem
 const reset_button = document.getElementById("reset_button") as HTMLButtonElement;
 const auto_button = document.getElementById("auto_button") as HTMLButtonElement;
 const reset_all_button = document.getElementById("reset_all_button") as HTMLButtonElement;
+const timer_name = document.getElementById("timer_name") as HTMLParagraphElement;
 
 const ctx = canvas ? canvas.getContext("2d") : null;
 const parentElement = canvas.parentElement;
@@ -322,6 +323,12 @@ const reset_all = () => {
 
     draw_background();
 }
+
+const updateTimer = (name: string, workTime: number, breakTime: number) => {
+    timer_name.innerText = name;
+}
+
+export default updateTimer;
 
 start_button.addEventListener("click", start_timer);
 switch_button.addEventListener("click", switch_timer);
