@@ -208,8 +208,16 @@ button.timer_button *{
     padding: 0.5em;
 }
 
+.list_selection_border {
+    border: 2px solid rgb(0, 255, 149);
+}
+
 .preset_list ul li:hover {
     background-color: rgb(88, 88, 88);
+}
+
+.preset_list ul li:active {
+    color: rgb(54, 54, 54);
 }
 
 .preset_list::-webkit-scrollbar {
