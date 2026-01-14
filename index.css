@@ -32,6 +32,8 @@
 
     --container-box-shadow: rgb(59, 59, 59);
 
+    --preset-buttons-color: white;
+
 }
 
 .content_wrapper {
@@ -157,6 +159,7 @@ button.timer_button *{
 .preset_inner {
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     border-radius: 2em;
     min-height: 100%;
     height: 100%;
@@ -193,7 +196,6 @@ button.timer_button *{
     box-sizing: border-box;
     gap: 0.5em;
     padding-left: 0;
-    
 }
 
 .preset_list ul li {
@@ -230,7 +232,31 @@ button.timer_button *{
     border-radius: 2em;
 }
 
-
 .preset_list::-webkit-scrollbar-thumb:hover {
     background: rgb(255, 255, 255);
+}
+
+.preset_options {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: end;
+    padding: 1em;
+}
+
+.preset_options button {
+    border: transparent;
+    border-radius: 2em;
+    color: var(--preset-buttons-color);
+}
+
+.preset_options button:hover {
+    background-color: rgb(88, 88, 88);
+}
+
+.preset_options button:active {
+    color: rgb(54, 54, 54);
+}
+
+.preset_options i {
+    font-size:x-large;
 }

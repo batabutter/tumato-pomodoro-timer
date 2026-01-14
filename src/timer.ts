@@ -74,7 +74,7 @@ class Timer {
 
 }
 
-let totalWorkTime = 60000;
+let totalWorkTime = 600000;
 let totalBreakTime = 60000;
 let WorkTimer = new Timer(TimerType.Work, totalWorkTime);
 let BreakTimer = new Timer(TimerType.Break, totalBreakTime);
