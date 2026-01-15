@@ -1,4 +1,5 @@
-import { updateTimer, formatTime }from "./timer.js";
+import * as path from "path";
+import * as fs from "fs";
 
 const preset_list = document.getElementById("timer_preset_list") as HTMLDivElement;
 const li = document.getElementsByTagName("li");
@@ -6,20 +7,22 @@ let listElements:HTMLElement[] = [];
 let selected = -1;
 let currentTarget:HTMLElement | null = null;
 
-const renderPresetList = async () => {
+const filePath = path.join(__dirname, "../customization/timer-presets.json");
+
+export const renderPresetList = async () => {
 
     try {
-        const res = await fetch("../customization/timer-presets.json");
-        const json = await res.json();
+        const data = fs.readFileSync(filePath, "utf-8");
+        const json = JSON.parse(data);
 
-        preset_list.innerHTML +=
+        preset_list.innerHTML =
             `<ul> ${json.presets.map(
                 (timer: TimerData) =>
                     (`<li>
                         <p>${timer.name}</p>
-                        <p>Work: ${formatTime(timer.workDuration)}</p>
-                        <p>Break: ${formatTime(timer.breakDuration)}</p>
-                        </li>`)).join('')}
+                        <p>Work: ${window.timer.formatTime(timer.workDuration)}</p>
+                        <p>Break: ${window.timer.formatTime(timer.breakDuration)}</p>
+                    </li>`)).join('')}
             </ul>`;
 
         listElements = Array.from(preset_list.querySelectorAll("li"));
@@ -30,20 +33,16 @@ const renderPresetList = async () => {
     }
 }
 
-const savePreset = () => {
-
-}
-
 const loadPreset = async (index: number) => {
     try {
-        const res = await fetch("../customization/timer-presets.json");
-        const json = await res.json();
+        const data = fs.readFileSync(filePath, "utf-8");
+        const json = JSON.parse(data);
 
         console.log(json.presets)
 
         let preset = json.presets[index];
 
-        updateTimer(preset.name, preset.workDuration, preset.breakDuration);
+        window.timer.updateTimer(preset.name, preset.workDuration, preset.breakDuration);
     } catch (error) {
         console.log(`Couldn't load timer preset data :${error}`);
     }
@@ -70,5 +69,3 @@ preset_list.addEventListener("click",
             }
         }
     })
-
-renderPresetList();

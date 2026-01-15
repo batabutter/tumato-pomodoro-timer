@@ -1,4 +1,7 @@
 const information = document.getElementById('info')
+import { loadTimerElements } from './addTimer.js';
+import { renderPresetList } from './presets.js';
+import { formatTime, initTimer, updateTimer } from './timer.js';
 
 console.log(information)
 console.log(window.versions)
@@ -9,8 +12,15 @@ else if (information)
     information.innerText = `Renderer Error`
 
 const func = async () => {
-    const response = await window.versions.ping();
-    console.log(response);
+    console.log("Alive > ");
+}
+
+window.timer = {
+    updateTimer: updateTimer,
+    formatTime: formatTime
 }
 
 func();
+initTimer();
+renderPresetList();
+loadTimerElements();

@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
         "target": "es2022",
-        "module": "nodenext",
+        "module": "commonjs",
         "rootDir": "src",
         "outDir": "build",
         "strict": true,
-        "moduleResolution": "nodenext",
 
         "lib": ["dom", "esnext"],
         "types": ["node", "electron"],
@@ -14,7 +13,8 @@
         "strictNullChecks": true,
         "skipLibCheck": false,
 
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
     },
     "include": [
         "src/**/*"

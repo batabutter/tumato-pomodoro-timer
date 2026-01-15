@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="index.css">
         <meta charset="UTF-8" />
+        <meta http-equiv="Content-Security-Policy" content="font-src kit.fontawesome.com;"/>
         <script src="https://kit.fontawesome.com/7e4bca7cee.js"
             crossorigin="anonymous"></script>
         <title>Tumato</title>
@@ -16,20 +17,22 @@
                         <p>Add new Timer</p>
                     </div>
                     <span>Work</span>
-                    <div class="interactive_create_timer">
-                        <div class="timer_segment"><p>00</p></div>:
-                        <div class="timer_segment"><p>00</p></div>:
-                        <div class="timer_segment"><p>00</p></div>
+                    <div class="interactive_create_timer"
+                        id="create_work_timer">
+                        <div class="timer_segment"><p id="wh">00</p></div>:
+                        <div class="timer_segment"><p id="wm">00</p></div>:
+                        <div class="timer_segment"><p id="ws">00</p></div>
                     </div>
                     <span>Break</span>
-                    <div class="interactive_create_timer">
-                        <div class="timer_segment"><p>00</p></div>:
-                        <div class="timer_segment"><p>00</p></div>:
-                        <div class="timer_segment"><p>00</p></div>
+                    <div class="interactive_create_timer"
+                        id="create_break_timer">
+                        <div class="timer_segment"><p id="bh">00</p></div>:
+                        <div class="timer_segment"><p id="bm">00</p></div>:
+                        <div class="timer_segment"><p id="bs">00</p></div>
                     </div>
                     <div class="create_timer_name">
                         <i class="fa-regular fa-pen-to-square"></i>
-                        <input placeholder="Timer" />
+                        <input placeholder="Timer" id="create_timer_name" />
                     </div>
                     <div class="create_timer_button_layout">
                         <button id="save_button" class="save_button">
@@ -84,9 +87,7 @@
             </div>
         </div>
     </body>
-
-    <script type="module" src="build/renderer.js"></script>
-    <script type="module" src="build/timer.js"></script>
-    <script type="module" src="build/presets.js"></script>
-    <script type="module" src="build/addTimer.js"></script>
+    <script>
+        require('./build/renderer.js');
+    </script>
 </html>

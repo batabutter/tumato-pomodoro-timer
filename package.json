@@ -10,9 +10,9 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/node": "22.7.7",
     "electron": "39.2.7",
     "typescript": "^5.9.3",
-    "@types/node": "22.7.7"
-  },
-  "type": "module"
+    "undici-types": "^7.18.2"
+  }
 }

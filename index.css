@@ -288,7 +288,7 @@ button.timer_button *{
     gap: 2em;
     justify-content: center;
     width: 50%;
-    height: 55vh;
+    height: 70vh;
 
     background-color: rgb(36, 36, 36);
     border-radius: 2em;
@@ -355,7 +355,6 @@ button.timer_button *{
     gap: 2em;
     justify-content: center;
     width: 70%;
-    height: 100%;
 
     color: white;
 }
@@ -389,6 +388,7 @@ button.timer_button *{
     border-bottom: 2px solid var(--timer-name-border-bottom);
     padding: 0.5em;
     width: 100%;
+    height: 100%;
 }
 
 .create_timer_name input{
@@ -418,6 +418,11 @@ button.timer_button *{
 
 .timer_segment:hover {
     background-color: rgb(88, 88, 88);
+}
+
+.timer_segment_selection {
+    background-color: rgb(88, 88, 88);
+    border-radius: 0.25em;
 }
 
 .create_timer_button_layout {

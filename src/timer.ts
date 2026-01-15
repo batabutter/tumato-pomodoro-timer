@@ -135,7 +135,7 @@ const draw_background = () => {
 
     /* Focused Timer must be initalized beforehand */
     draw_time();
-    
+
     /* This should be optimized */
     if (FocusedTimer.GetIsRunning()) {
         start_icon.classList.remove("fa-play");
@@ -206,7 +206,7 @@ const start_timer = () => {
         if (fraction >= 1) {
             if (auto) {
                 auto_switch_timer();
-            } else 
+            } else
                 window.cancelAnimationFrame(requestId)
             return;
         }
@@ -342,10 +342,13 @@ export const formatTime = (remainingTime: number): string => {
     return `${numHours}:${numMinutes}:${numSeconds}`
 }
 
-start_button.addEventListener("click", start_timer);
-switch_button.addEventListener("click", switch_timer);
-reset_button.addEventListener("click", reset_timer);
-auto_button.addEventListener("click", set_auto_condition);
-reset_all_button.addEventListener("click", reset_all);
+export const initTimer = () => {
 
-draw_background();
+    start_button.addEventListener("click", start_timer);
+    switch_button.addEventListener("click", switch_timer);
+    reset_button.addEventListener("click", reset_timer);
+    auto_button.addEventListener("click", set_auto_condition);
+    reset_all_button.addEventListener("click", reset_all);
+
+    draw_background();
+}
