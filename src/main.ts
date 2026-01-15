@@ -8,6 +8,7 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 1500,
         height: 900,
+        icon: path.join(__dirname, "../assets/tumato.ico"),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,

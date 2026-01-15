@@ -82,22 +82,23 @@ const saveTimer = async () => {
         /* Create work */
         for (let i = 0; i < numSegments; i++) {
             const pElt = timerElements[i];
+            window.messaging.log(`What the fuck > ${workDuration}`)
             workDuration += parseInt(pElt.innerText) * offset;
-            offset /= 6;
+            window.messaging.log(`What the fuck>>>>>>>>>>>> > ${workDuration}`)
+            offset /= 60;
         }
 
         offset = msInHour;
 
         /* Create Break */
 
-        for (let i = 0; i < numSegments; i++) {
+        for (let i = numSegments; i < timerElements.length; i++) {
             const pElt = timerElements[i];
-            console.log("Break Duration is now ")
             breakDuration += parseInt(pElt.innerText) * offset;
-            offset /= 6;
+            offset /= 60;
         }
 
-        console.log(`Name: ${name} Work Duration: ${workDuration} Break Duration${breakDuration}`)
+        window.messaging.log(`Name: ${name} Work Duration: ${workDuration} Break Duration${breakDuration}`)
 
         const newPreset = {
             "name": name,

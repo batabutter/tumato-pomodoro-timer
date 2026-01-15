@@ -1,3 +1,5 @@
+import * as path from "path";
+
 const canvas = document.getElementById("timer") as HTMLCanvasElement;
 const start_button = document.getElementById("start_button") as HTMLButtonElement;
 const start_icon = document.getElementById("start_icon") as HTMLButtonElement;
@@ -23,6 +25,9 @@ const color_scheme_work = "rgb(0, 255, 213)";
 const color_scheme_break = "rgb(255, 99, 99)";
 const color_scheme_canvas = parentElement ? getComputedStyle(parentElement).backgroundColor : "white";
 
+let workTimerCompleteSound: HTMLAudioElement | null = null;
+let breakTimerCompleteSound: HTMLAudioElement | null = null;
+
 let requestId: number = -1;
 let auto = false;
 
@@ -40,8 +45,9 @@ class Timer {
     elaspedTime: number;
     totalTime: number;
     isRunning: boolean;
+    audio: HTMLAudioElement | null
 
-    constructor(timerType: TimerType, totalTime: number) {
+    constructor(timerType: TimerType, totalTime: number, audio:HTMLAudioElement| null) {
         this.type = timerType;
         this.startTime = null;
         this.pausedStart = null;
@@ -49,6 +55,7 @@ class Timer {
         this.elaspedTime = 0;
         this.totalTime = totalTime;
         this.isRunning = false;
+        this.audio = audio;
     }
 
     GetTimerType() { return this.type; }
@@ -65,6 +72,20 @@ class Timer {
     SetElaspsedTime(time: number) { this.elaspedTime = time; }
     SetIsRunning(running: boolean) { this.isRunning = running; }
 
+    PlayAudio() {
+        if (this.audio) {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+
+            this.audio.play();
+        }
+    }
+
+    PauseAudio() {
+        if (this.audio)
+            this.audio.pause();
+    }
+
     ResetAll() {
         this.startTime = null;
         this.pausedStart = null;
@@ -76,8 +97,8 @@ class Timer {
 
 let totalWorkTime = 600000;
 let totalBreakTime = 60000;
-let WorkTimer = new Timer(TimerType.Work, totalWorkTime);
-let BreakTimer = new Timer(TimerType.Break, totalBreakTime);
+let WorkTimer = new Timer(TimerType.Work, totalWorkTime, workTimerCompleteSound);
+let BreakTimer = new Timer(TimerType.Break, totalBreakTime, breakTimerCompleteSound);
 
 let FocusedTimer: Timer | null;
 FocusedTimer = WorkTimer;
@@ -204,6 +225,7 @@ const start_timer = () => {
         draw_background();
 
         if (fraction >= 1) {
+            FocusedTimer.PlayAudio();
             if (auto) {
                 auto_switch_timer();
             } else
@@ -223,6 +245,8 @@ const stop_timer = () => {
     FocusedTimer.SetIsRunning(false)
     FocusedTimer.SetPausedStart(Date.now());
     window.cancelAnimationFrame(requestId);
+
+    FocusedTimer.PauseAudio();
 }
 
 const reset_timer = () => {
@@ -276,6 +300,10 @@ const draw_time = () => {
 }
 
 const switch_timer = () => {
+    if(!FocusedTimer) return
+
+    FocusedTimer.PauseAudio();
+
     stop_timer();
 
     if (FocusedTimer == WorkTimer)
@@ -321,8 +349,8 @@ export const updateTimer = (name: string, workTime: number, breakTime: number) =
     totalWorkTime = workTime;
     totalBreakTime = breakTime;
 
-    WorkTimer = new Timer(TimerType.Work, totalWorkTime);
-    BreakTimer = new Timer(TimerType.Break, totalBreakTime);
+    WorkTimer = new Timer(TimerType.Work, totalWorkTime, workTimerCompleteSound);
+    BreakTimer = new Timer(TimerType.Break, totalBreakTime, breakTimerCompleteSound);
 
     FocusedTimer = WorkTimer;
 
@@ -349,6 +377,9 @@ export const initTimer = () => {
     reset_button.addEventListener("click", reset_timer);
     auto_button.addEventListener("click", set_auto_condition);
     reset_all_button.addEventListener("click", reset_all);
+    
+    workTimerCompleteSound = new Audio(path.join(__dirname, "../assets/audio/work.ogg"));
+    breakTimerCompleteSound = new Audio(path.join(__dirname, "../assets/audio/break.ogg"));
 
     draw_background();
 }
