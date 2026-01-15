@@ -24,6 +24,8 @@ const createWindow = () => {
     })
 }
 
+if (require('electron-squirrel-startup')) app.quit();
+
 app.whenReady().then(() => {
 
     ipcMain.handle('ping', () => 'pong');
