@@ -12,9 +12,10 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        icon: path.join(__dirname, "/assets/tumato.ico"),
+        icon: path.join(__dirname, "assets", "tumato.ico"),
         author: "michaelmorton",
-        setupIcon: path.join(__dirname, "/assets/tumato.ico"),
+        iconUrl: 'https://raw.githubusercontent.com/batabutter/tumato-pomodoro-timer/refs/heads/master/assets/tumato.ico',
+        setupIcon: path.join(__dirname, "assets", "tumato.ico"),
         description: "Tumato - A virtual pomodoro timer"
       },
     },
