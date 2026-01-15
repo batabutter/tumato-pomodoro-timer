@@ -11,20 +11,20 @@ body {
     padding: 1em;
 }
 
-:root{
+:root {
     --timer-container-bg-color: rgb(46, 46, 46);
     --timer-name-color: white;
     --timer-name-border-bottom: rgb(88, 88, 88);
 
-    --top-button-border:rgb(233, 184, 255);
-    --timer-auto-button-gradient-bottom:rgb(219, 142, 255);
-    
+    --top-button-border: rgb(233, 184, 255);
+    --timer-auto-button-gradient-bottom: rgb(219, 142, 255);
+
     --timer-container-gradient-top: rgb(219, 142, 255);
     --timer-container-gradient-bottom: #3ab1d5;
 
     --button-border: rgb(127, 195, 255);
     --button-icon: rgb(127, 195, 255);
-    --button-box-shadow:rgb(201, 247, 253);
+    --button-box-shadow: rgb(201, 247, 253);
 
     --header-button-border: rgb(219, 142, 255);
 
@@ -112,12 +112,10 @@ body {
     border-radius: 1em;
     padding: 1em;
     border-style: solid;
-    border-image: 
-        linear-gradient(
-            to bottom, 
-            var(--timer-container-gradient-top) 0%, 
-            var(--timer-container-gradient-bottom) 100%) 
-            1;
+    border-image:
+        linear-gradient(to bottom,
+            var(--timer-container-gradient-top) 0%,
+            var(--timer-container-gradient-bottom) 100%) 1;
     border-width: 4px;
     box-shadow: 5px 5px 5px var(--container-bg-color);
 }
@@ -155,7 +153,7 @@ button.timer_button:active {
     box-shadow: inset 2px 2px var(--button-box-shadow);
 }
 
-button.timer_button *{
+button.timer_button * {
     background: transparent;
 }
 
@@ -165,10 +163,10 @@ button.timer_button *{
     width: 60%;
     border-radius: 2em;
     height: 100%;
-    background-image: 
-        linear-gradient(to bottom, 
-        var(--preset-container-bg), 
-        rgb(36, 36, 36));
+    background-image:
+        linear-gradient(to bottom,
+            var(--preset-container-bg),
+            rgb(36, 36, 36));
     background-color: var(--preset-container-bg);
     box-shadow: 5px 5px 5px rgb(27, 27, 27);
     padding: 0.5em;
@@ -216,6 +214,7 @@ button.timer_button *{
     box-sizing: border-box;
     gap: 0.5em;
     padding-left: 0;
+    border: 2px solid green;
 }
 
 .preset_list ul li {
@@ -223,11 +222,19 @@ button.timer_button *{
     box-sizing: border-box;
     justify-content: space-between;
     list-style-type: none;
+    text-align: left;
     gap: 0.5em;
     border-radius: 2em;
     font-weight: bold;
     width: 100%;
     padding: 2em;
+    border: 2px solid red;
+}
+
+.preset_list ul li p {
+    width: 100%;
+    text-align: center;
+    border: 2px solid blue;
 }
 
 .list_selection_border {
@@ -278,7 +285,7 @@ button.timer_button *{
 }
 
 .preset_options i {
-    font-size:x-large;
+    font-size: x-large;
 }
 
 .create_timer_container {
@@ -294,12 +301,13 @@ button.timer_button *{
     border-radius: 2em;
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.8);
     position: absolute;
+    z-index: -1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     color: white;
-    opacity: 0;
+    opacity: 1;
     transition: transform 0.4s, top 0.4s;
 }
 
@@ -315,6 +323,7 @@ button.timer_button *{
 }
 
 .fade_in {
+    z-index: 1;
     opacity: 1;
     animation-name: fade_in_opacity;
     animation-iteration-count: 1;
@@ -334,6 +343,7 @@ button.timer_button *{
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
@@ -343,6 +353,7 @@ button.timer_button *{
     0% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
@@ -369,7 +380,7 @@ button.timer_button *{
 .create_timer_container * {
     background: transparent;
     margin: 0;
-    
+
 }
 
 .create_timer_container_title {
@@ -391,7 +402,7 @@ button.timer_button *{
     height: 100%;
 }
 
-.create_timer_name input{
+.create_timer_name input {
     color: white;
     padding: 1em;
     border-radius: 2em;
