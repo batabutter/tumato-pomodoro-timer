@@ -1,28 +1,3 @@
 {
-  "presets": [
-    {
-      "name": "10 Minute Timer",
-      "workDuration": "600000",
-      "breakDuration": "30000",
-      "id": 0
-    },
-    {
-      "name": "20 Minute Timer",
-      "workDuration": "1200000",
-      "breakDuration": "300000",
-      "id": 1
-    },
-    {
-      "name": "Timer",
-      "workDuration": 0,
-      "breakDuration": 0,
-      "id": 2
-    },
-    {
-      "name": "Timer",
-      "workDuration": 0,
-      "breakDuration": 0,
-      "id": 3
-    }
-  ]
+  "presets": []
 }

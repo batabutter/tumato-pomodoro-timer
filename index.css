@@ -214,7 +214,26 @@ button.timer_button * {
     box-sizing: border-box;
     gap: 0.5em;
     padding-left: 0;
-    border: 2px solid green;
+}
+
+.preset_list .inner {
+    display: flex;
+    flex-direction: row;
+}
+
+.preset_list .inner button {
+    color: rgb(255, 57, 57);
+    border-radius: 2em;
+    border: none;
+}
+
+.preset_list .inner button:hover{
+    background-color: rgb(194, 132, 132);
+}
+
+.preset_list .inner button:active{
+    box-shadow: inset 2px 2px var(--button-box-shadow);
+    background-color: rgb(185, 75, 75);
 }
 
 .preset_list ul li {
@@ -228,13 +247,11 @@ button.timer_button * {
     font-weight: bold;
     width: 100%;
     padding: 2em;
-    border: 2px solid red;
 }
 
 .preset_list ul li p {
     width: 100%;
     text-align: center;
-    border: 2px solid blue;
 }
 
 .list_selection_border {

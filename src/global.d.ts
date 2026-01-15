@@ -15,13 +15,17 @@ declare global {
         indexBridge: {
             openPresets: () => void,
             writePresets: () => void
+        },
+        messaging: {
+            log: (message: any) => void
         }
     }
 
     interface TimerData {
         name: string,
         workDuration: number,
-        breakDuration: number
+        breakDuration: number,
+        id: number
     }
 
 }

@@ -40,3 +40,7 @@ app.on('window-all-closed', () => {
         app.quit();
 });
 
+ipcMain.on("consoleLog", (event, message) => {
+    console.log(message);
+});
+

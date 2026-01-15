@@ -5,3 +5,9 @@ window.versions = {
     chrome: () => process.versions.chrome,
     electron: () => process.versions.electron
 };
+
+window.messaging = {
+    log: (message) => {
+        ipcRenderer.send("consoleLog", message);
+    }
+}

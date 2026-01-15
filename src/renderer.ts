@@ -1,4 +1,5 @@
 const information = document.getElementById('info')
+import { ipcRenderer } from 'electron';
 import { loadTimerElements } from './addTimer.js';
 import { renderPresetList } from './presets.js';
 import { formatTime, initTimer, updateTimer } from './timer.js';
