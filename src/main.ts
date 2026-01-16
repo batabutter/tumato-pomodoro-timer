@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
+import { app, BrowserWindow, globalShortcut, ipcMain, ipcRenderer } from 'electron';
 import * as path from "path";
 
 const createWindow = () => {
@@ -18,6 +18,7 @@ const createWindow = () => {
         resizable: false
     });
     win.loadFile("index.html");
+    /* win.webContents.openDevTools(); */
 
     globalShortcut.register('CommandOrControl+R', () => {
         win.reload();
@@ -32,7 +33,7 @@ app.whenReady().then(() => {
 
     createWindow();
 
-    app.on('activate', () => {
+    app.on('activate', () => { 
         if(BrowserWindow.getAllWindows().length === 0) 
             createWindow();
     });
@@ -47,3 +48,8 @@ ipcMain.on("consoleLog", (event, message) => {
     console.log(message);
 });
 
+ipcMain.handle("getAppState", () => ({
+    isPackaged: app.isPackaged,
+    appPath: app.getAppPath(),
+    dataPath: path.join(app.getPath("userData"), "userData")
+}))

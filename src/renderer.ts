@@ -1,7 +1,7 @@
 const information = document.getElementById('info')
 import { ipcRenderer } from 'electron';
 import { loadTimerElements } from './addTimer.js';
-import { renderPresetList } from './presets.js';
+import { renderPresetList, setFilePath } from './presets.js';
 import { formatTime, initTimer, updateTimer } from './timer.js';
 
 console.log(information)
@@ -23,5 +23,6 @@ window.timer = {
 
 func();
 initTimer();
+setFilePath();
 renderPresetList();
 loadTimerElements();

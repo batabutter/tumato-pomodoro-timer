@@ -5,7 +5,10 @@ const path = require("path")
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: path.join(__dirname, "/assets/tumato")
+    icon: path.join(__dirname, "/assets/tumato"),
+    extraResource: [
+      "./customization/"
+    ]
   },
   rebuildConfig: {},
   makers: [

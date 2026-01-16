@@ -3,17 +3,44 @@ import * as fs from "fs";
 
 const preset_list = document.getElementById("timer_preset_list") as HTMLDivElement;
 const li = document.getElementsByTagName("li");
-let listElements:HTMLElement[] = [];
-let buttonElements:HTMLButtonElement[] = [];
+let listElements: HTMLElement[] = [];
+let buttonElements: HTMLButtonElement[] = [];
 let selected = -1;
-let currentTarget:HTMLElement | null = null;
+let currentTarget: HTMLElement | null = null;
+let filePath = "";
 
-const filePath = path.join(__dirname, "../customization/timer-presets.json");
+export const getFilePath = (): string => { return filePath; }
+
+export const setFilePath = (): void => {
+    if (!window.appState.isPackaged) {
+        filePath = path.join(__dirname, "../customization", "timer-presets.json");
+    } else {
+        filePath = path.join(window.appState.dataPath, "timer-presets.json");
+
+        if (!fs.existsSync(window.appState.dataPath)) {
+            /*
+            const tempPath = path.join(window.appState.appPath, "/customization/timer-presets.json");
+            const data = fs.readFileSync(tempPath, "utf-8");
+            const json = JSON.parse(data);
+            */
+            const json = {
+                "presets": [
+                ]
+            }
+
+            console.log(`Data path > ${filePath}`)
+            console.log(json);
+
+            fs.mkdirSync(window.appState.dataPath, { recursive: true });
+
+            fs.writeFileSync(filePath, JSON.stringify(json, null, 2), "utf-8");
+            console.log(`wrote to file`);
+        }
+    }
+}
+
 
 export const renderPresetList = async () => {
-
-    window.messaging.log("rendering preset list");
-
     try {
         const data = fs.readFileSync(filePath, "utf-8");
         const json = JSON.parse(data);
@@ -21,7 +48,7 @@ export const renderPresetList = async () => {
         preset_list.innerHTML =
             `<ul> ${json.presets.map(
                 (timer: TimerData) =>
-                    (`
+                (`
                         <div class="inner">
                             <li>
                                 <div class="inner"> </div>
@@ -31,7 +58,7 @@ export const renderPresetList = async () => {
                             </li>
                             <button id="${timer.id}"><i class="fa-solid fa-trash"></i></button>
                         </div>`)
-                ).join('')}
+            ).join('')}
             </ul>`;
 
         listElements = Array.from(preset_list.querySelectorAll("li"));
@@ -74,12 +101,12 @@ preset_list.addEventListener("click",
                 selected = index;
                 console.log(`Selected: ${index}`);
                 loadPreset(selected);
-                
+
                 currentTarget.classList.add("list_selection_border")
             }
-        } else if (delete_target){
+        } else if (delete_target) {
             const index = buttonElements.indexOf(delete_target);
-            window.messaging.log(`deleting ${index}`);
+            console.log(`deleting ${index}`);
 
             if (selected === index) {
                 selected = -1;
@@ -90,12 +117,13 @@ preset_list.addEventListener("click",
                 const json = JSON.parse(data);
 
                 json.presets.splice(index, 1);
-                
+
                 fs.writeFileSync(filePath, JSON.stringify(json, null, 2), "utf-8");
+                console.log(json);
 
                 renderPresetList();
             } catch (error) {
-                window.messaging.log(error);
+                console.log(error);
             }
         }
-})
+    })

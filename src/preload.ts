@@ -11,3 +11,11 @@ window.messaging = {
         ipcRenderer.send("consoleLog", message);
     }
 }
+
+const initAppState = async () => {
+    const retAppState = await ipcRenderer.invoke("getAppState");
+    window.appState = retAppState;
+    window.messaging.log(window.appState)
+}
+
+initAppState();

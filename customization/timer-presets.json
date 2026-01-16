@@ -1,34 +1,3 @@
 {
-  "presets": [
-    {
-      "name": "Timer",
-      "workDuration": 5000,
-      "breakDuration": 0,
-      "id": 4
-    },
-    {
-      "name": "dumb",
-      "workDuration": 1000,
-      "breakDuration": 100000,
-      "id": 1
-    },
-    {
-      "name": "a",
-      "workDuration": 37230000,
-      "breakDuration": 109210000,
-      "id": 2
-    },
-    {
-      "name": "test",
-      "workDuration": 5000,
-      "breakDuration": 5000,
-      "id": 3
-    },
-    {
-      "name": "Timer",
-      "workDuration": 1000,
-      "breakDuration": 1000,
-      "id": 4
-    }
-  ]
+  "presets": []
 }

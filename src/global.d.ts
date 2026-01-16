@@ -9,7 +9,7 @@ declare global {
             electron: () => string
         },
         timer: {
-            updateTimer: (name: string, workDur: number, breakDur:number) => void,
+            updateTimer: (name: string, workDur: number, breakDur: number) => void,
             formatTime: (time: number) => string
         },
         indexBridge: {
@@ -18,6 +18,11 @@ declare global {
         },
         messaging: {
             log: (message: any) => void
+        },
+        appState: {
+            isPackaged: boolean,
+            appPath: string,
+            dataPath: string
         }
     }
 

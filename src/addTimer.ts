@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { renderPresetList } from "./presets";
+import { getFilePath, renderPresetList } from "./presets";
 
 
 const createTimerPopup = document.getElementById("create_timer_container") as HTMLDivElement;
@@ -12,9 +12,6 @@ const workTimer = document.getElementById("create_work_timer") as HTMLDivElement
 const breakTimer = document.getElementById("create_break_timer") as HTMLDivElement;
 
 const timerName = document.getElementById("create_timer_name") as HTMLInputElement;
-
-const filePath = path.join(__dirname, "../customization/timer-presets.json");
-
 let timerElements: HTMLParagraphElement[] = [];
 let selected = -1;
 let currentTarget: HTMLElement | null = null;
@@ -24,6 +21,7 @@ const maxTimeHrMin = 60;
 const msInHour = 3600000;
 
 export const loadTimerElements = () => {
+
     timerElements = Array.from(workTimer.querySelectorAll("p"));
     timerElements = timerElements.concat(Array.from(breakTimer.querySelectorAll("p")))
     let index = 0;
@@ -39,7 +37,6 @@ export const loadTimerElements = () => {
                 const charCode = key.key;
                 const innerText = i.innerText;
                 if (charCode >= "0" && charCode <= "9") {
-                    console.log("Key pressed > " + key.key);
 
                     let temp = innerText + charCode;
                     let altered = temp.substring(1);
@@ -55,6 +52,10 @@ export const loadTimerElements = () => {
 }
 
 const openTimerPopup = () => {
+    workTimer.querySelectorAll("p").forEach( (value: HTMLParagraphElement) => {
+        value.innerText = "00";
+    })    
+
     createTimerPopup.classList.remove("fade_out");
     createTimerPopup.classList.add("fade_in");
 
@@ -65,6 +66,8 @@ const openTimerPopup = () => {
 }
 
 const saveTimer = async () => {
+    const filePath = getFilePath();
+
 
     try {
         const data = fs.readFileSync(filePath, "utf-8");
@@ -82,9 +85,7 @@ const saveTimer = async () => {
         /* Create work */
         for (let i = 0; i < numSegments; i++) {
             const pElt = timerElements[i];
-            window.messaging.log(`What the fuck > ${workDuration}`)
             workDuration += parseInt(pElt.innerText) * offset;
-            window.messaging.log(`What the fuck>>>>>>>>>>>> > ${workDuration}`)
             offset /= 60;
         }
 
