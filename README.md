@@ -1,5 +1,5 @@
 <p align = "center">
-    <img src="/assets/tumato.png" />
+    <img src="https://raw.githubusercontent.com/batabutter/tumato-pomodoro-timer/refs/heads/master/assets/tumato.ico" />
     Tumato
 </p> 
 
