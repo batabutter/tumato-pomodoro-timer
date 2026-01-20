@@ -3,7 +3,7 @@
     Tumato
 </p> 
 
-# 🍅 Tumato v1.0.0
+# 🍅 Tumato v1.0.1
 
 ## 🔽 Installation:
 
@@ -19,3 +19,8 @@
 - **Setup** : tumato-1.0.0 Setup.exe
 - Future: Load background themes using themes.json
 - Future: Load color themes using themes.json
+
+# Change Log: 
+
+## v1.0.1
+- Fixed audio not playing when minizied and timer not refreshing when creating a new timer.

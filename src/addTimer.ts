@@ -54,7 +54,10 @@ export const loadTimerElements = () => {
 const openTimerPopup = () => {
     workTimer.querySelectorAll("p").forEach( (value: HTMLParagraphElement) => {
         value.innerText = "00";
-    })    
+    })   
+    breakTimer.querySelectorAll("p").forEach( (value: HTMLParagraphElement) => {
+        value.innerText = "00";
+    }) 
 
     createTimerPopup.classList.remove("fade_out");
     createTimerPopup.classList.add("fade_in");
