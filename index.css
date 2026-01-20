@@ -255,11 +255,13 @@ button.timer_button * {
 }
 
 .list_selection_border {
-    border: 2px solid rgb(0, 255, 149);
+    color: rgb(83, 255, 212);
+    background-color: rgb(116, 116, 116);
+
 }
 
 .preset_list ul li:hover {
-    background-color: rgb(88, 88, 88);
+    background-color: rgb(80, 80, 80);
 }
 
 .preset_list ul li:active {

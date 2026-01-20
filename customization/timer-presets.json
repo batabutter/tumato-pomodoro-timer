@@ -1,16 +1,4 @@
 {
   "presets": [
-    {
-      "name": "Timer",
-      "workDuration": 1000,
-      "breakDuration": 0,
-      "id": 0
-    },
-    {
-      "name": "Timer",
-      "workDuration": 5000,
-      "breakDuration": 0,
-      "id": 1
-    }
   ]
 }

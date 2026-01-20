@@ -23,4 +23,5 @@
 # Change Log: 
 
 ## v1.0.1
-- Fixed audio not playing when minizied and timer not refreshing when creating a new timer.
+- Fixed audio not playing when minizied and timer not refreshing when creating a new timer
+- Changed color styling
