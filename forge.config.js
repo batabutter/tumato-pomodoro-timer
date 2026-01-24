@@ -19,7 +19,7 @@ module.exports = {
         author: "michaelmorton",
         iconUrl: 'https://raw.githubusercontent.com/batabutter/tumato-pomodoro-timer/refs/heads/master/assets/tumato.ico',
         setupIcon: path.join(__dirname, "assets", "tumato.ico"),
-        description: "Tumato - A virtual pomodoro timer"
+        description: "A virtual pomodoro timer"
       },
     },
     {
@@ -27,11 +27,13 @@ module.exports = {
       platforms: ['darwin'],
     },
     {
-      name: '@electron-forge/maker-deb',
+      name: '@electron-forge/maker-deb', 
       config: {
-        options: {
-          icon: path.join(__dirname, "tumato.png")
-        }
+        icon: path.join(__dirname, "assets", "tumato.ico"),
+        author: "michaelmorton",
+        iconUrl: 'https://raw.githubusercontent.com/batabutter/tumato-pomodoro-timer/refs/heads/master/assets/tumato.ico',
+        setupIcon: path.join(__dirname, "assets", "tumato.ico"),
+        description: "A virtual pomodoro timer"
       },
     },
     {

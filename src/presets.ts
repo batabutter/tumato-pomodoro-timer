@@ -85,7 +85,7 @@ const loadPreset = async (index: number) => {
 }
 
 preset_list.addEventListener("click",
-    function (e: PointerEvent) {
+    function (e: MouseEvent) {
         const target = (e.target as HTMLElement).closest('li');
         const delete_target = (e.target as HTMLElement).closest('button');
 

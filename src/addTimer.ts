@@ -158,7 +158,7 @@ const handleSelection = (target: HTMLParagraphElement) => {
 }
 
 workTimer.addEventListener("click",
-    function (e: PointerEvent) {
+    function (e: MouseEvent) {
         const target = (e.target as HTMLElement).closest('p');
         console.log(`Made it inside work timer create${target}`);
 
@@ -169,7 +169,7 @@ workTimer.addEventListener("click",
 )
 
 breakTimer.addEventListener("click",
-    function (e: PointerEvent) {
+    function (e: MouseEvent) {
         const target = (e.target as HTMLElement).closest('p');
         console.log(`Made it inside break timer create${target}`);
 
