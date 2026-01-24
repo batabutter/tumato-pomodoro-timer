@@ -1,4 +1,22 @@
 {
   "presets": [
+    {
+      "name": "a",
+      "workDuration": 5000,
+      "breakDuration": 5000,
+      "id": 0
+    },
+    {
+      "name": "Name",
+      "workDuration": 1000,
+      "breakDuration": 1000,
+      "id": 1
+    },
+    {
+      "name": "a",
+      "workDuration": 60000,
+      "breakDuration": 60000,
+      "id": 2
+    }
   ]
 }

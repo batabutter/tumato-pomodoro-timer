@@ -47,7 +47,7 @@ class Timer {
     isRunning: boolean;
     audio: HTMLAudioElement | null
 
-    constructor(timerType: TimerType, totalTime: number, audio:HTMLAudioElement| null) {
+    constructor(timerType: TimerType, totalTime: number, audio: HTMLAudioElement | null) {
         this.type = timerType;
         this.startTime = null;
         this.pausedStart = null;
@@ -72,12 +72,19 @@ class Timer {
     SetElaspsedTime(time: number) { this.elaspedTime = time; }
     SetIsRunning(running: boolean) { this.isRunning = running; }
 
-    PlayAudio() {
-        if (this.audio) {
-            this.audio.pause();
-            this.audio.currentTime = 0;
+    Ended() { return this.GetElaspedTime() >= this.GetTotalTime()}
 
-            this.audio.play();
+    PlayAudio() {
+        window.messaging.log("Trying to play")
+        if (this.audio) {
+
+            if (this.audio.ended || this.audio.currentTime == 0) {
+
+                this.audio.pause();
+                this.audio.currentTime = 0;
+
+                this.audio.play();
+            }
         }
     }
 
@@ -87,10 +94,15 @@ class Timer {
     }
 
     ResetAll() {
+        if (this.audio) {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+        }
         this.startTime = null;
         this.pausedStart = null;
         this.pausedTime = 0;
         this.elaspedTime = 0;
+        this.isRunning = false;
     }
 
 }
@@ -190,6 +202,11 @@ const start_timer = () => {
 
     if (!ctx || !FocusedTimer) return;
 
+    if (FocusedTimer.Ended()) {
+        reset_timer();
+        return;
+    }
+
     if (FocusedTimer.GetIsRunning()) {
         stop_timer();
         draw_background();
@@ -223,14 +240,15 @@ const start_timer = () => {
 
         FocusedTimer.SetElaspsedTime(now_time - startTime - pausedTime);
         draw_background();
+        window.messaging.log(`wahs > ${fraction}`);
 
         if (fraction >= 1) {
-            FocusedTimer.PlayAudio();
             if (auto) {
                 auto_switch_timer();
-            } else
-                window.cancelAnimationFrame(requestId)
-            return;
+                return;
+            } else {
+                FocusedTimer.PlayAudio();
+            }
         }
 
         requestId = window.requestAnimationFrame(run_timer);
@@ -242,8 +260,10 @@ const start_timer = () => {
 const stop_timer = () => {
     if (!ctx || !FocusedTimer) return;
 
-    FocusedTimer.SetIsRunning(false)
-    FocusedTimer.SetPausedStart(Date.now());
+    if (!FocusedTimer.Ended()) {
+        FocusedTimer.SetIsRunning(false)
+        FocusedTimer.SetPausedStart(Date.now());
+    }
     window.cancelAnimationFrame(requestId);
 
     FocusedTimer.PauseAudio();
@@ -300,7 +320,7 @@ const draw_time = () => {
 }
 
 const switch_timer = () => {
-    if(!FocusedTimer) return
+    if (!FocusedTimer) return
 
     FocusedTimer.PauseAudio();
 
@@ -315,13 +335,15 @@ const switch_timer = () => {
 }
 
 const auto_switch_timer = () => {
+    if (!FocusedTimer) throw "Focus Timer not defined"
+
     reset_timer();
 
     switch_timer();
 
-    if ((BreakTimer.GetElaspedTime() / BreakTimer.GetTotalTime()) >= 1)
+    if (FocusedTimer.Ended())
         reset_timer();
-
+    
     start_timer();
 }
 
@@ -377,7 +399,7 @@ export const initTimer = () => {
     reset_button.addEventListener("click", reset_timer);
     auto_button.addEventListener("click", set_auto_condition);
     reset_all_button.addEventListener("click", reset_all);
-    
+
     workTimerCompleteSound = new Audio(path.join(__dirname, "../assets/audio/work.ogg"));
     breakTimerCompleteSound = new Audio(path.join(__dirname, "../assets/audio/break.ogg"));
 
