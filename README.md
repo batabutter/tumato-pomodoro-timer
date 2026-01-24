@@ -22,6 +22,7 @@
 
 # Change Log: 
 
-## v1.0.1
+## v1.0.2
 - Fixed audio not playing when minizied and timer not refreshing when creating a new timer
 - Changed color styling
+- Fixed bug where audio was not looping

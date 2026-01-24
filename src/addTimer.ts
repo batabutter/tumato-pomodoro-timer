@@ -58,6 +58,7 @@ const openTimerPopup = () => {
     breakTimer.querySelectorAll("p").forEach( (value: HTMLParagraphElement) => {
         value.innerText = "00";
     }) 
+    timerName.value = ""
 
     createTimerPopup.classList.remove("fade_out");
     createTimerPopup.classList.add("fade_in");
